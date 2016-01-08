@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01CCCE071C4079B30066A46D /* Info-iOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE011C4079B30066A46D /* Info-iOS.plist */; };
+		01CCCE081C4079B30066A46D /* Info-OSX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE021C4079B30066A46D /* Info-OSX.plist */; };
+		01CCCE091C4079B30066A46D /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE031C4079B30066A46D /* Info-tvOS.plist */; };
+		01CCCE0A1C4079B30066A46D /* Info-watchOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE041C4079B30066A46D /* Info-watchOS.plist */; };
+		01CCCE0B1C4079B30066A46D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CCCE061C4079B30066A46D /* SwiftyJSON.swift */; };
 		01E125351C40680D005CDB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E125341C40680D005CDB7C /* AppDelegate.swift */; };
 		01E125381C40680D005CDB7C /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01E125361C40680D005CDB7C /* Contacts.xcdatamodeld */; };
 		01E1253A1C40680D005CDB7C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E125391C40680D005CDB7C /* MasterViewController.swift */; };
@@ -52,6 +57,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01CCCE011C4079B30066A46D /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-iOS.plist"; path = "SwiftJSON/Info-iOS.plist"; sourceTree = "<group>"; };
+		01CCCE021C4079B30066A46D /* Info-OSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-OSX.plist"; path = "SwiftJSON/Info-OSX.plist"; sourceTree = "<group>"; };
+		01CCCE031C4079B30066A46D /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "SwiftJSON/Info-tvOS.plist"; sourceTree = "<group>"; };
+		01CCCE041C4079B30066A46D /* Info-watchOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-watchOS.plist"; path = "SwiftJSON/Info-watchOS.plist"; sourceTree = "<group>"; };
+		01CCCE051C4079B30066A46D /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftyJSON.h; path = SwiftJSON/SwiftyJSON.h; sourceTree = "<group>"; };
+		01CCCE061C4079B30066A46D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = SwiftJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		01E125311C40680D005CDB7C /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E125341C40680D005CDB7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E125371C40680D005CDB7C /* Contacts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contacts.xcdatamodel; sourceTree = "<group>"; };
@@ -111,10 +122,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01CCCE001C4079800066A46D /* SwiftJSON */ = {
+			isa = PBXGroup;
+			children = (
+				01CCCE011C4079B30066A46D /* Info-iOS.plist */,
+				01CCCE021C4079B30066A46D /* Info-OSX.plist */,
+				01CCCE031C4079B30066A46D /* Info-tvOS.plist */,
+				01CCCE041C4079B30066A46D /* Info-watchOS.plist */,
+				01CCCE051C4079B30066A46D /* SwiftyJSON.h */,
+				01CCCE061C4079B30066A46D /* SwiftyJSON.swift */,
+			);
+			name = SwiftJSON;
+			sourceTree = "<group>";
+		};
 		01E125281C40680D005CDB7C = {
 			isa = PBXGroup;
 			children = (
 				01F928491C406A7700328FAF /* Alamofire */,
+				01CCCE001C4079800066A46D /* SwiftJSON */,
 				01E125331C40680D005CDB7C /* Contacts */,
 				01E1254D1C40680D005CDB7C /* ContactsTests */,
 				01E125581C40680D005CDB7C /* ContactsUITests */,
@@ -293,11 +318,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CCCE0A1C4079B30066A46D /* Info-watchOS.plist in Resources */,
+				01CCCE071C4079B30066A46D /* Info-iOS.plist in Resources */,
 				01E125441C40680D005CDB7C /* LaunchScreen.storyboard in Resources */,
 				01E125411C40680D005CDB7C /* Assets.xcassets in Resources */,
 				01F9285E1C406A8A00328FAF /* Info-tvOS.plist in Resources */,
 				01F9285F1C406A8A00328FAF /* Info.plist in Resources */,
 				01E1253F1C40680D005CDB7C /* Main.storyboard in Resources */,
+				01CCCE091C4079B30066A46D /* Info-tvOS.plist in Resources */,
+				01CCCE081C4079B30066A46D /* Info-OSX.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +358,7 @@
 				01F9286A1C406A8A00328FAF /* Validation.swift in Sources */,
 				01E125351C40680D005CDB7C /* AppDelegate.swift in Sources */,
 				01F928661C406A8A00328FAF /* Result.swift in Sources */,
+				01CCCE0B1C4079B30066A46D /* SwiftyJSON.swift in Sources */,
 				01F928641C406A8A00328FAF /* Response.swift in Sources */,
 				01F928631C406A8A00328FAF /* Request.swift in Sources */,
 				01F928601C406A8A00328FAF /* Manager.swift in Sources */,
