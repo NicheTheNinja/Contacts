@@ -16,6 +16,22 @@
 		01E125441C40680D005CDB7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E125421C40680D005CDB7C /* LaunchScreen.storyboard */; };
 		01E1254F1C40680D005CDB7C /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1254E1C40680D005CDB7C /* ContactsTests.swift */; };
 		01E1255A1C40680D005CDB7C /* ContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E125591C40680D005CDB7C /* ContactsUITests.swift */; };
+		01F9285B1C406A8A00328FAF /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9284B1C406A8A00328FAF /* Alamofire.swift */; };
+		01F9285C1C406A8A00328FAF /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9284C1C406A8A00328FAF /* Download.swift */; };
+		01F9285D1C406A8A00328FAF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9284D1C406A8A00328FAF /* Error.swift */; };
+		01F9285E1C406A8A00328FAF /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F9284E1C406A8A00328FAF /* Info-tvOS.plist */; };
+		01F9285F1C406A8A00328FAF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F9284F1C406A8A00328FAF /* Info.plist */; };
+		01F928601C406A8A00328FAF /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928501C406A8A00328FAF /* Manager.swift */; };
+		01F928611C406A8A00328FAF /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928511C406A8A00328FAF /* MultipartFormData.swift */; };
+		01F928621C406A8A00328FAF /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928521C406A8A00328FAF /* ParameterEncoding.swift */; };
+		01F928631C406A8A00328FAF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928531C406A8A00328FAF /* Request.swift */; };
+		01F928641C406A8A00328FAF /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928541C406A8A00328FAF /* Response.swift */; };
+		01F928651C406A8A00328FAF /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928551C406A8A00328FAF /* ResponseSerialization.swift */; };
+		01F928661C406A8A00328FAF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928561C406A8A00328FAF /* Result.swift */; };
+		01F928671C406A8A00328FAF /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928571C406A8A00328FAF /* ServerTrustPolicy.swift */; };
+		01F928681C406A8A00328FAF /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928581C406A8A00328FAF /* Stream.swift */; };
+		01F928691C406A8A00328FAF /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F928591C406A8A00328FAF /* Upload.swift */; };
+		01F9286A1C406A8A00328FAF /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9285A1C406A8A00328FAF /* Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +67,23 @@
 		01E125551C40680D005CDB7C /* ContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E125591C40680D005CDB7C /* ContactsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUITests.swift; sourceTree = "<group>"; };
 		01E1255B1C40680D005CDB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01F9284A1C406A8A00328FAF /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alamofire.h; path = Alamofire/Alamofire.h; sourceTree = "<group>"; };
+		01F9284B1C406A8A00328FAF /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire/Alamofire.swift; sourceTree = "<group>"; };
+		01F9284C1C406A8A00328FAF /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Alamofire/Download.swift; sourceTree = "<group>"; };
+		01F9284D1C406A8A00328FAF /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Alamofire/Error.swift; sourceTree = "<group>"; };
+		01F9284E1C406A8A00328FAF /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Alamofire/Info-tvOS.plist"; sourceTree = "<group>"; };
+		01F9284F1C406A8A00328FAF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Alamofire/Info.plist; sourceTree = "<group>"; };
+		01F928501C406A8A00328FAF /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Alamofire/Manager.swift; sourceTree = "<group>"; };
+		01F928511C406A8A00328FAF /* MultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Alamofire/MultipartFormData.swift; sourceTree = "<group>"; };
+		01F928521C406A8A00328FAF /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Alamofire/ParameterEncoding.swift; sourceTree = "<group>"; };
+		01F928531C406A8A00328FAF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Alamofire/Request.swift; sourceTree = "<group>"; };
+		01F928541C406A8A00328FAF /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Alamofire/Response.swift; sourceTree = "<group>"; };
+		01F928551C406A8A00328FAF /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Alamofire/ResponseSerialization.swift; sourceTree = "<group>"; };
+		01F928561C406A8A00328FAF /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Alamofire/Result.swift; sourceTree = "<group>"; };
+		01F928571C406A8A00328FAF /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Alamofire/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		01F928581C406A8A00328FAF /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Alamofire/Stream.swift; sourceTree = "<group>"; };
+		01F928591C406A8A00328FAF /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Alamofire/Upload.swift; sourceTree = "<group>"; };
+		01F9285A1C406A8A00328FAF /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Alamofire/Validation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +114,7 @@
 		01E125281C40680D005CDB7C = {
 			isa = PBXGroup;
 			children = (
+				01F928491C406A7700328FAF /* Alamofire */,
 				01E125331C40680D005CDB7C /* Contacts */,
 				01E1254D1C40680D005CDB7C /* ContactsTests */,
 				01E125581C40680D005CDB7C /* ContactsUITests */,
@@ -129,6 +163,30 @@
 				01E1255B1C40680D005CDB7C /* Info.plist */,
 			);
 			path = ContactsUITests;
+			sourceTree = "<group>";
+		};
+		01F928491C406A7700328FAF /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				01F9284A1C406A8A00328FAF /* Alamofire.h */,
+				01F9284B1C406A8A00328FAF /* Alamofire.swift */,
+				01F9284C1C406A8A00328FAF /* Download.swift */,
+				01F9284D1C406A8A00328FAF /* Error.swift */,
+				01F9284E1C406A8A00328FAF /* Info-tvOS.plist */,
+				01F9284F1C406A8A00328FAF /* Info.plist */,
+				01F928501C406A8A00328FAF /* Manager.swift */,
+				01F928511C406A8A00328FAF /* MultipartFormData.swift */,
+				01F928521C406A8A00328FAF /* ParameterEncoding.swift */,
+				01F928531C406A8A00328FAF /* Request.swift */,
+				01F928541C406A8A00328FAF /* Response.swift */,
+				01F928551C406A8A00328FAF /* ResponseSerialization.swift */,
+				01F928561C406A8A00328FAF /* Result.swift */,
+				01F928571C406A8A00328FAF /* ServerTrustPolicy.swift */,
+				01F928581C406A8A00328FAF /* Stream.swift */,
+				01F928591C406A8A00328FAF /* Upload.swift */,
+				01F9285A1C406A8A00328FAF /* Validation.swift */,
+			);
+			name = Alamofire;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +295,8 @@
 			files = (
 				01E125441C40680D005CDB7C /* LaunchScreen.storyboard in Resources */,
 				01E125411C40680D005CDB7C /* Assets.xcassets in Resources */,
+				01F9285E1C406A8A00328FAF /* Info-tvOS.plist in Resources */,
+				01F9285F1C406A8A00328FAF /* Info.plist in Resources */,
 				01E1253F1C40680D005CDB7C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,8 +323,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E125381C40680D005CDB7C /* Contacts.xcdatamodeld in Sources */,
+				01F9285B1C406A8A00328FAF /* Alamofire.swift in Sources */,
+				01F928621C406A8A00328FAF /* ParameterEncoding.swift in Sources */,
+				01F928681C406A8A00328FAF /* Stream.swift in Sources */,
+				01F9286A1C406A8A00328FAF /* Validation.swift in Sources */,
 				01E125351C40680D005CDB7C /* AppDelegate.swift in Sources */,
+				01F928661C406A8A00328FAF /* Result.swift in Sources */,
+				01F928641C406A8A00328FAF /* Response.swift in Sources */,
+				01F928631C406A8A00328FAF /* Request.swift in Sources */,
+				01F928601C406A8A00328FAF /* Manager.swift in Sources */,
+				01F9285C1C406A8A00328FAF /* Download.swift in Sources */,
 				01E1253A1C40680D005CDB7C /* MasterViewController.swift in Sources */,
+				01F928611C406A8A00328FAF /* MultipartFormData.swift in Sources */,
+				01F928691C406A8A00328FAF /* Upload.swift in Sources */,
+				01F9285D1C406A8A00328FAF /* Error.swift in Sources */,
+				01F928671C406A8A00328FAF /* ServerTrustPolicy.swift in Sources */,
+				01F928651C406A8A00328FAF /* ResponseSerialization.swift in Sources */,
 				01E1253C1C40680D005CDB7C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +566,7 @@
 				01E125601C40680D005CDB7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01E125611C40680D005CDB7C /* Build configuration list for PBXNativeTarget "ContactsTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +575,7 @@
 				01E125631C40680D005CDB7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01E125641C40680D005CDB7C /* Build configuration list for PBXNativeTarget "ContactsUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +584,7 @@
 				01E125661C40680D005CDB7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
