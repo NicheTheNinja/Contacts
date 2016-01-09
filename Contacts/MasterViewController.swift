@@ -13,8 +13,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-    var contacts = [NSManagedObject]()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +26,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        loadUsers()
+        if self.fetchedResultsController.sections?.first?.numberOfObjects == 0 {
+            fetchUsers()
+        }
     }
     
-    func loadUsers() {
+    func fetchUsers() {
         request(.GET, "http://api.randomuser.me/?results=3").responseString() { (response) -> Void in
             if let jsonString = response.result.value {
                 let json = JSON.parse(jsonString)
@@ -43,8 +43,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 for user in users {
                     let contact = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                    contact.setValue(user["user"]["cell"].string, forKey: "cell")
+                    contact.setValue(user["user"]["location"]["city"].string, forKey: "city")
+                    contact.setValue(user["user"]["email"].string, forKey: "email")
                     contact.setValue(user["user"]["name"]["first"].string, forKey: "first")
+                    contact.setValue(user["user"]["gender"].string, forKey: "gender")
                     contact.setValue(user["user"]["name"]["last"].string, forKey: "last")
+                    contact.setValue(user["user"]["phone"].string, forKey: "phone")
+                    contact.setValue(user["user"]["location"]["state"].string, forKey: "state")
+                    contact.setValue(user["user"]["location"]["street"].string, forKey: "street")
+                    contact.setValue(user["user"]["name"]["title"].string, forKey: "title")
+                    contact.setValue(user["user"]["location"]["zip"].int, forKey: "zip")
                     do {
                         try managedContext.save()
                     } catch let error as NSError {
@@ -87,7 +96,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = self.tableView.indexPathForSelectedRow {
             let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                controller.contact = Contact(object: object)
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -134,9 +143,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-        let first = object.valueForKey("first")!.description
-        let last = object.valueForKey("last")!.description
-        cell.textLabel!.text = first + " " + last
+        let contact = Contact(object: object)
+        cell.textLabel!.text = contact.name.first + " " + contact.name.last
     }
 
     // MARK: - Fetched results controller

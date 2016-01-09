@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
 
-    var detailItem: AnyObject? {
+    var contact: Contact? {
         didSet {
             // Update the view.
             self.configureView()
@@ -22,9 +22,9 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
+        if let contact = self.contact {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("first")!.description
+                label.text = contact.name.first
             }
         }
     }
