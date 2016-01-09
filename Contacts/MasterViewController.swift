@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    var contacts = [NSManagedObject]()
 
 
     override func viewDidLoad() {
@@ -26,16 +27,37 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        loadUsers()
+    }
+    
+    func loadUsers() {
+        request(.GET, "http://api.randomuser.me/?results=3").responseString() { (response) -> Void in
+            if let jsonString = response.result.value {
+                let json = JSON.parse(jsonString)
+                let users = json["results"].array!
+                print(users)
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext
+                let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: managedContext)
+                
+                for user in users {
+                    let contact = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                    contact.setValue(user["user"]["name"]["first"].string, forKey: "first")
+                    contact.setValue(user["user"]["name"]["last"].string, forKey: "last")
+                    do {
+                        try managedContext.save()
+                    } catch let error as NSError {
+                        print("Could not save \(error), \(error.userInfo)")
+                    }
+                }
+            }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func insertNewObject(sender: AnyObject) {
@@ -112,7 +134,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-        cell.textLabel!.text = object.valueForKey("timeStamp")!.description
+        let first = object.valueForKey("first")!.description
+        let last = object.valueForKey("last")!.description
+        cell.textLabel!.text = first + " " + last
     }
 
     // MARK: - Fetched results controller
@@ -124,14 +148,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "first", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
