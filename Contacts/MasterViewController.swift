@@ -53,7 +53,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     contact.setValue(user["user"]["location"]["state"].string, forKey: "state")
                     contact.setValue(user["user"]["location"]["street"].string, forKey: "street")
                     contact.setValue(user["user"]["name"]["title"].string, forKey: "title")
-                    contact.setValue(user["user"]["location"]["zip"].int, forKey: "zip")
+                    if let zip = user["user"]["location"]["zip"].string {
+                        contact.setValue(zip, forKey: "zip")
+                    } else {
+                        contact.setValue(String(user["user"]["location"]["zip"].int), forKey: "zip")
+                    }
+                    
                     do {
                         try managedContext.save()
                     } catch let error as NSError {

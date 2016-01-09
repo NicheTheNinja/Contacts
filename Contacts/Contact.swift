@@ -30,13 +30,13 @@ struct Location {
     var street: String
     var city: String
     var state: String
-    var zip: Int
+    var zip: String
     
     init(object: AnyObject) {
         street = object.valueForKey("street")!.description
         city = object.valueForKey("city")!.description
         state = object.valueForKey("state")!.description
-        zip = object.valueForKey("zip") as! Int
+        zip = object.valueForKey("zip")!.description
     }
 }
 
