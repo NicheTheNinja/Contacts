@@ -32,7 +32,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func fetchUsers() {
-        request(.GET, "http://api.randomuser.me/?results=3").responseString() { (response) -> Void in
+        request(.GET, "http://api.randomuser.me/?results=100").responseString() { (response) -> Void in
             if let jsonString = response.result.value {
                 let json = JSON.parse(jsonString)
                 let users = json["results"].array!
@@ -163,7 +163,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "first", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "first", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
