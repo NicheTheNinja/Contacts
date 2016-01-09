@@ -32,11 +32,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func fetchUsers() {
-        request(.GET, "http://api.randomuser.me/?results=100").responseString() { (response) -> Void in
+        request(.GET, "http://api.randomuser.me/?results=1000").responseString() { (response) -> Void in
             if let jsonString = response.result.value {
                 let json = JSON.parse(jsonString)
                 let users = json["results"].array!
-                print(users)
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 let managedContext = appDelegate.managedObjectContext
                 let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: managedContext)
@@ -59,11 +58,29 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         contact.setValue(String(user["user"]["location"]["zip"].int), forKey: "zip")
                     }
                     
+                    contact.setValue(user["user"]["picture"]["thumbnail"].string, forKey: "thumbnailURL")
                     do {
                         try managedContext.save()
                     } catch let error as NSError {
                         print("Could not save \(error), \(error.userInfo)")
                     }
+                }
+                self.downloadImages()
+            }
+        }
+    }
+    
+    func downloadImages() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        for object in fetchedResultsController.fetchedObjects! {
+            let thumbnail = object.valueForKey("thumbnailURL")!.description
+            request(.GET, thumbnail).responseData() { response in
+                object.setValue(response.result.value, forKey: "thumbnail")
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save \(error), \(error.userInfo)")
                 }
             }
         }
@@ -213,7 +230,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .Delete:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             case .Update:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+                if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
+                    self.configureCell(cell, atIndexPath: indexPath!)
+                }
             case .Move:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)

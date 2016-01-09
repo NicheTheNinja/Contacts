@@ -32,9 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ipB-Qd-SzD">
-                                <rect key="frame" x="20" y="64" width="157" height="122"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title. First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuJ-F1-Qd0">
                                 <rect key="frame" x="185" y="114" width="395" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -125,6 +122,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ipB-Qd-SzD">
+                                <rect key="frame" x="95" y="85" width="80" height="80"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -138,6 +138,7 @@
                         <outlet property="phone" destination="if5-dm-5Pf" id="9zv-3n-WEr"/>
                         <outlet property="state" destination="x7g-rO-gR1" id="Aaj-AL-3Yu"/>
                         <outlet property="street" destination="2bE-7A-JRa" id="IyY-MM-O58"/>
+                        <outlet property="thumbnail" destination="ipB-Qd-SzD" id="TbM-fJ-Suc"/>
                         <outlet property="zip" destination="XM0-Vf-mdD" id="bU9-4k-YMO"/>
                     </connections>
                 </viewController>

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Gender {
     case Male
@@ -47,6 +48,7 @@ class Contact {
     let email: String
     let phone: String
     let cell: String
+    var thumbnail: UIImage?
     
     init(object: AnyObject) {
         switch object.valueForKey("gender")!.description {
@@ -63,5 +65,9 @@ class Contact {
         email = object.valueForKey("email")!.description
         phone = object.valueForKey("phone")!.description
         cell  = object.valueForKey("cell")!.description
+        let data = object.valueForKey("thumbnail") as? NSData
+        if let data = data {
+            thumbnail = UIImage(data: data)
+        }
     }
 }

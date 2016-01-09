@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var phone: UILabel!
@@ -39,6 +40,9 @@ class DetailViewController: UIViewController {
                 city.text = contact.location.city
                 state.text = contact.location.state
                 zip.text = String(contact.location.zip)
+            }
+            if var thumbnail = self.thumbnail {
+                thumbnail.image = contact.thumbnail
             }
         }
     }

@@ -165,12 +165,12 @@
 				01E125341C40680D005CDB7C /* AppDelegate.swift */,
 				01E125391C40680D005CDB7C /* MasterViewController.swift */,
 				01E1253B1C40680D005CDB7C /* DetailViewController.swift */,
+				01CCCE0C1C4089510066A46D /* Contact.swift */,
 				01E1253D1C40680D005CDB7C /* Main.storyboard */,
 				01E125401C40680D005CDB7C /* Assets.xcassets */,
 				01E125421C40680D005CDB7C /* LaunchScreen.storyboard */,
 				01E125451C40680D005CDB7C /* Info.plist */,
 				01E125361C40680D005CDB7C /* Contacts.xcdatamodeld */,
-				01CCCE0C1C4089510066A46D /* Contact.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
