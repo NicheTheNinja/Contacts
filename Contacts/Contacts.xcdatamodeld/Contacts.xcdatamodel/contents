@@ -5,6 +5,7 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="first" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstInitial" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,6 +17,6 @@
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="495" positionY="212" width="128" height="240"/>
+        <element name="Contact" positionX="495" positionY="212" width="128" height="255"/>
     </elements>
 </model>

@@ -19,11 +19,13 @@ struct Name {
     var title: String
     var first: String
     var last: String
+    var firstInitial: String
     
     init(object: AnyObject) {
         title = object.valueForKey("title")!.description
         first = object.valueForKey("first")!.description
         last =  object.valueForKey("last")!.description
+        firstInitial = String(first.characters.first!)
     }
 }
 

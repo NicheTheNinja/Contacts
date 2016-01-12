@@ -17,22 +17,25 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+//        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        if self.fetchedResultsController.sections?.first?.numberOfObjects == 0 {
-            fetchUsers()
+        if self.fetchedResultsController.fetchedObjects?.count == 0 {
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) { () -> Void in
+                self.fetchUsers()
+            }
         }
     }
     
     func fetchUsers() {
-        request(.GET, "http://api.randomuser.me/?results=1000").responseString() { (response) -> Void in
+        request(.GET, "http://api.randomuser.me/?results=500").responseString() { (response) -> Void in
             if let jsonString = response.result.value {
                 let json = JSON.parse(jsonString)
                 let users = json["results"].array!
@@ -45,13 +48,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     contact.setValue(user["user"]["cell"].string, forKey: "cell")
                     contact.setValue(user["user"]["location"]["city"].string, forKey: "city")
                     contact.setValue(user["user"]["email"].string, forKey: "email")
-                    contact.setValue(user["user"]["name"]["first"].string, forKey: "first")
                     contact.setValue(user["user"]["gender"].string, forKey: "gender")
                     contact.setValue(user["user"]["name"]["last"].string, forKey: "last")
                     contact.setValue(user["user"]["phone"].string, forKey: "phone")
                     contact.setValue(user["user"]["location"]["state"].string, forKey: "state")
                     contact.setValue(user["user"]["location"]["street"].string, forKey: "street")
                     contact.setValue(user["user"]["name"]["title"].string, forKey: "title")
+                    
+                    let first = user["user"]["name"]["first"].string
+                    contact.setValue(first, forKey: "first")
+                    contact.setValue(String(first!.characters.first!), forKey: "firstInitial")
                     if let zip = user["user"]["location"]["zip"].string {
                         contact.setValue(zip, forKey: "zip")
                     } else {
@@ -65,6 +71,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         print("Could not save \(error), \(error.userInfo)")
                     }
                 }
+                self.tableView.reloadData()
                 self.downloadImages()
             }
         }
@@ -98,7 +105,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
              
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
+        newManagedObject.setValue("", forKey: "first")
              
         // Save the context.
         do {
@@ -132,8 +139,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        let sectionInfo = self.fetchedResultsController.sections?[section]
+        return sectionInfo?.numberOfObjects ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -168,6 +175,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let contact = Contact(object: object)
         cell.textLabel!.text = contact.name.first + " " + contact.name.last
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.fetchedResultsController.sectionIndexTitles[section]
+    }
+    
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.fetchedResultsController.sectionIndexTitles
+    }
+    
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        return index
+    }
 
     // MARK: - Fetched results controller
 
@@ -191,7 +210,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: "firstInitial", cacheName: nil)//"Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
