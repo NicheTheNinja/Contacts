@@ -61,7 +61,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     if let zip = user["user"]["location"]["zip"].string {
                         contact.setValue(zip, forKey: "zip")
                     } else {
-                        contact.setValue(String(user["user"]["location"]["zip"].int), forKey: "zip")
+                        contact.setValue(String(user["user"]["location"]["zip"].int!), forKey: "zip")
                     }
                     
                     contact.setValue(user["user"]["picture"]["thumbnail"].string, forKey: "thumbnailURL")
