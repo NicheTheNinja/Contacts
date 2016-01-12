@@ -39,41 +39,46 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let jsonString = response.result.value {
                 let json = JSON.parse(jsonString)
                 let users = json["results"].array!
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let managedContext = appDelegate.managedObjectContext
-                let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: managedContext)
-                
                 for user in users {
-                    let contact = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                    contact.setValue(user["user"]["cell"].string, forKey: "cell")
-                    contact.setValue(user["user"]["location"]["city"].string, forKey: "city")
-                    contact.setValue(user["user"]["email"].string, forKey: "email")
-                    contact.setValue(user["user"]["gender"].string, forKey: "gender")
-                    contact.setValue(user["user"]["name"]["last"].string, forKey: "last")
-                    contact.setValue(user["user"]["phone"].string, forKey: "phone")
-                    contact.setValue(user["user"]["location"]["state"].string, forKey: "state")
-                    contact.setValue(user["user"]["location"]["street"].string, forKey: "street")
-                    contact.setValue(user["user"]["name"]["title"].string, forKey: "title")
-                    
-                    let first = user["user"]["name"]["first"].string
-                    contact.setValue(first, forKey: "first")
-                    contact.setValue(String(first!.characters.first!), forKey: "firstInitial")
-                    if let zip = user["user"]["location"]["zip"].string {
-                        contact.setValue(zip, forKey: "zip")
-                    } else {
-                        contact.setValue(String(user["user"]["location"]["zip"].int!), forKey: "zip")
-                    }
-                    
-                    contact.setValue(user["user"]["picture"]["thumbnail"].string, forKey: "thumbnailURL")
-                    do {
-                        try managedContext.save()
-                    } catch let error as NSError {
-                        print("Could not save \(error), \(error.userInfo)")
-                    }
+                    self.parseAndSaveUser(user)
                 }
+                
                 self.tableView.reloadData()
                 self.downloadImages()
             }
+        }
+    }
+    
+    func parseAndSaveUser(user: JSON) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: managedContext)
+        
+        let contact = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        contact.setValue(user["user"]["cell"].string, forKey: "cell")
+        contact.setValue(user["user"]["location"]["city"].string, forKey: "city")
+        contact.setValue(user["user"]["email"].string, forKey: "email")
+        contact.setValue(user["user"]["gender"].string, forKey: "gender")
+        contact.setValue(user["user"]["name"]["last"].string, forKey: "last")
+        contact.setValue(user["user"]["phone"].string, forKey: "phone")
+        contact.setValue(user["user"]["location"]["state"].string, forKey: "state")
+        contact.setValue(user["user"]["location"]["street"].string, forKey: "street")
+        contact.setValue(user["user"]["name"]["title"].string, forKey: "title")
+        
+        let first = user["user"]["name"]["first"].string
+        contact.setValue(first, forKey: "first")
+        contact.setValue(String(first!.characters.first!), forKey: "firstInitial")
+        if let zip = user["user"]["location"]["zip"].string {
+            contact.setValue(zip, forKey: "zip")
+        } else {
+            contact.setValue(String(user["user"]["location"]["zip"].int!), forKey: "zip")
+        }
+        
+        contact.setValue(user["user"]["picture"]["thumbnail"].string, forKey: "thumbnailURL")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
     
