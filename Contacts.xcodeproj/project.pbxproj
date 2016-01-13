@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019D05931C466C02002B9FA5 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D05921C466C02002B9FA5 /* NetworkController.swift */; };
 		01CCCE071C4079B30066A46D /* Info-iOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE011C4079B30066A46D /* Info-iOS.plist */; };
 		01CCCE081C4079B30066A46D /* Info-OSX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE021C4079B30066A46D /* Info-OSX.plist */; };
 		01CCCE091C4079B30066A46D /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CCCE031C4079B30066A46D /* Info-tvOS.plist */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		019D05921C466C02002B9FA5 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		01CCCE011C4079B30066A46D /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-iOS.plist"; path = "SwiftJSON/Info-iOS.plist"; sourceTree = "<group>"; };
 		01CCCE021C4079B30066A46D /* Info-OSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-OSX.plist"; path = "SwiftJSON/Info-OSX.plist"; sourceTree = "<group>"; };
 		01CCCE031C4079B30066A46D /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "SwiftJSON/Info-tvOS.plist"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				01E125391C40680D005CDB7C /* MasterViewController.swift */,
 				01E1253B1C40680D005CDB7C /* DetailViewController.swift */,
 				01CCCE0C1C4089510066A46D /* Contact.swift */,
+				019D05921C466C02002B9FA5 /* NetworkController.swift */,
 				01E1253D1C40680D005CDB7C /* Main.storyboard */,
 				01E125401C40680D005CDB7C /* Assets.xcassets */,
 				01E125421C40680D005CDB7C /* LaunchScreen.storyboard */,
@@ -359,6 +362,7 @@
 				01F928621C406A8A00328FAF /* ParameterEncoding.swift in Sources */,
 				01F928681C406A8A00328FAF /* Stream.swift in Sources */,
 				01F9286A1C406A8A00328FAF /* Validation.swift in Sources */,
+				019D05931C466C02002B9FA5 /* NetworkController.swift in Sources */,
 				01E125351C40680D005CDB7C /* AppDelegate.swift in Sources */,
 				01F928661C406A8A00328FAF /* Result.swift in Sources */,
 				01CCCE0B1C4079B30066A46D /* SwiftyJSON.swift in Sources */,
