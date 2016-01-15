@@ -75,10 +75,14 @@ class DetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
     }
     
+    // This will not work in the simulator. However if tested on a physical device
+    // the dialer should open and automatically dial the number
     func call(button: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: "tel://" + button.titleLabel!.text!)!)
     }
-    
+
+    // This will not work in the simulator. However if tested on a physical device
+    // the native mail client should open and set the to address to the emaill adress
     func email(button: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: "mailto:" + contact!.email)!)
     }
