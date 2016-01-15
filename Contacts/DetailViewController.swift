@@ -10,15 +10,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var thumbnail: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var email: UILabel!
-    @IBOutlet weak var phone: UILabel!
-    @IBOutlet weak var cell: UILabel!
-    @IBOutlet weak var street: UILabel!
-    @IBOutlet weak var city: UILabel!
-    @IBOutlet weak var state: UILabel!
-    @IBOutlet weak var zip: UILabel!
+    let thumbnail = UIImageView()
+    let name = UILabel()
+    let email = UILabel()
+    let phone = UILabel()
+    let cell = UILabel()
+    let street = UILabel()
+    let city = UILabel()
+    let state = UILabel()
+    let zip = UILabel()
     
     var contact: Contact? {
         didSet {
@@ -29,28 +29,47 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let contact = self.contact {
-            if let name = self.name, email = self.email, phone = self.phone, cell = self.cell,
-            street = self.street, city = self.city, state = self.state, zip = self.zip {
-                name.text = contact.name.title + " " + contact.name.first + " " + contact.name.last
-                email.text = contact.email
-                phone.text = contact.phone
-                cell.text = contact.cell
-                street.text = contact.location.state
-                city.text = contact.location.city
-                state.text = contact.location.state
-                zip.text = String(contact.location.zip)
-            }
-            if var thumbnail = self.thumbnail {
-                thumbnail.image = contact.thumbnail
-            }
+        
+        let viewsDictionary = ["name": name, "email": email, "phone": phone, "cell": cell, "street": street,
+            "city": city, "state": state, "zip": zip, "thumbnail": thumbnail]
+        
+        for (_ , view) in viewsDictionary {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(view)
         }
+        
+        if let contact = self.contact {
+            name.text = contact.name.title + " " + contact.name.first + " " + contact.name.last
+            email.text = contact.email
+            phone.text = contact.phone
+            cell.text = contact.cell
+            street.text = contact.location.street
+            city.text = contact.location.city
+            state.text = contact.location.state
+            zip.text = String(contact.location.zip)
+            thumbnail.image = contact.thumbnail
+        }
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[thumbnail(80)]-[name]-|",
+            options: [],
+            metrics: nil,
+            views: viewsDictionary))
+
+        let string = "V:|-[name]-[email][phone][cell]-[street][city][state][zip]"
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(string,
+            options: [.AlignAllLeft, .AlignAllRight],
+            metrics: nil,
+            views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[thumbnail(80)]",
+            options: [.AlignAllLeft, .AlignAllRight],
+            metrics: nil,
+            views: viewsDictionary))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
+        self.view.backgroundColor = UIColor.whiteColor()
     }
 }
 

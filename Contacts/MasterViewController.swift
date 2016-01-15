@@ -35,6 +35,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 self.networkController.fetchUsers()
             }
         }
+        
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -77,6 +79,31 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     // MARK: - Table View
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let object = dataController.fetchedResultsController.objectAtIndexPath(indexPath)
+        detailViewController?.contact = Contact(object: object)
+        detailViewController?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+        detailViewController?.navigationItem.leftItemsSupplementBackButton = true
+
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let traitCollection = app.window!.rootViewController!.view.traitCollection
+        switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+        case (.Regular, .Regular):
+            print("regular, regular")
+        case (.Regular, .Compact):
+            print("regular, compact")
+        case (.Compact, .Regular):
+            print("compact, regular")
+            self.navigationController?.pushViewController(detailViewController!, animated: true)
+        case (.Compact, .Compact):
+            print("compact, compact")
+            self.navigationController?.pushViewController(detailViewController!, animated: true)
+        default:
+            break
+        }
+    
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return dataController.fetchedResultsController.sections?.count ?? 0
