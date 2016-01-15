@@ -12,9 +12,9 @@ class DetailViewController: UIViewController {
 
     let thumbnail = UIImageView()
     let name = UILabel()
-    let email = UILabel()
-    let phone = UILabel()
-    let cell = UILabel()
+    let email = UIButton(type: .System)
+    let phone = UIButton(type: .System)
+    let cell = UIButton(type: .System)
     let street = UILabel()
     let city = UILabel()
     let state = UILabel()
@@ -40,9 +40,12 @@ class DetailViewController: UIViewController {
         
         if let contact = self.contact {
             name.text = contact.name.title + " " + contact.name.first + " " + contact.name.last
-            email.text = contact.email
-            phone.text = contact.phone
-            cell.text = contact.cell
+            email.setTitle(contact.email, forState: .Normal)
+            email.addTarget(self, action: "email:", forControlEvents: .TouchUpInside)
+            phone.setTitle(contact.phone, forState: .Normal)
+            phone.addTarget(self, action: "call:", forControlEvents: .TouchUpInside)
+            cell.setTitle(contact.cell, forState: .Normal)
+            cell.addTarget(self, action: "call:", forControlEvents: .TouchUpInside)
             street.text = contact.location.street
             city.text = contact.location.city
             state.text = contact.location.state
@@ -61,7 +64,7 @@ class DetailViewController: UIViewController {
             metrics: nil,
             views: viewsDictionary))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[thumbnail(80)]",
-            options: [.AlignAllLeft, .AlignAllRight],
+            options: [],
             metrics: nil,
             views: viewsDictionary))
     }
@@ -70,6 +73,14 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.configureView()
         self.view.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func call(button: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "tel://" + button.titleLabel!.text!)!)
+    }
+    
+    func email(button: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:" + contact!.email)!)
     }
 }
 
